@@ -1,7 +1,11 @@
 import React from 'react';
+import { ChartLayout } from './components/ChartLayout';
 
-const App = () => <h1>UK Energy Mix</h1>;
-
-export {
-    App
+export const App = () => {
+    return (
+        <div>
+            <h1>UK Energy Mix</h1>
+            <ChartLayout />
+        </div>
+    );
 }
