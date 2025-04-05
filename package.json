@@ -6,9 +6,13 @@
     "build": "webpack-cli build"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.71.10",
+    "axios": "^1.8.4",
+    "chart.js": "^4.4.8",
     "dotenv": "^16.4.7",
     "dotenv-webpack": "^8.1.0",
     "react": "^18.1.0",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
