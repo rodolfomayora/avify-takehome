@@ -4,9 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
 
-const host = process.env.SERVER_HOST ?? 'localhost';
-const port = Number.parseInt(process.env.SERVER_PORT) ?? 8080;
-const publicPath = process.env.VERCEL_URL ?? `http://${host}:${port}/`;
+const host = process.env.APP_HOST ?? 'localhost';
+const port = Number.parseInt(process.env.APP_PORT) ?? 8080;
+const customPublicPath = `http://${host}:${port}/`
+const vercePublicPath = '/'
+const publicPath = process.env.VERCEL_URL
+    ? vercePublicPath
+    : customPublicPath;
 
 module.exports = {
     mode: 'development',
