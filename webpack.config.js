@@ -1,9 +1,12 @@
-const path = require('path');
+require('dotenv').config()
+const path = require('node:path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
-const host = 'localhost';
-const port = 8080;
+const host = process.env.SERVER_HOST ?? 'localhost';
+const port = Number.parseInt(process.env.SERVER_PORT) ?? 8080;
+const publicPath = process.env.VERCEL_URL ?? `http://${host}:${port}/`;
 
 module.exports = {
     mode: 'development',
@@ -17,7 +20,7 @@ module.exports = {
     output: {
         filename: '[name]-[contenthash:6].bundle.js',
         path: path.join(__dirname, './build/www'),
-        publicPath: `http://${host}:${port}/`
+        publicPath: publicPath
     },
     resolve: {
         mainFields: ['browser', 'module', 'main'],
@@ -51,7 +54,10 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name]-[contenthash:6].css',
             chunkFilename: '[id].css'
-        })
+        }),
+        new DotenvWebpackPlugin({
+            path: '.env'
+        }),
     ],
     devServer: {
         port,
